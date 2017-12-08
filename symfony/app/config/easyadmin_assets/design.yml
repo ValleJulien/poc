@@ -1,0 +1,8 @@
+easy_admin:
+    # for more design see here http://symfony.com/doc/current/bundles/EasyAdminBundle/book/design-configuration.html
+    design:
+#        assets:
+#            js:
+        color_scheme: 'dark'
+        brand_color: '#FFAB00'
+        form_theme: ['vertical', 'VichUploaderBundle:Form:fields.html.twig']

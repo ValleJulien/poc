@@ -1,0 +1,8 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'Paramètres Généraux'
+            - label: 'Administration'
+              icon: 'users'
+              children: ['User']
+            - label: 'Gestion Contenu'

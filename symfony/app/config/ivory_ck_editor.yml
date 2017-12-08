@@ -1,0 +1,24 @@
+#ivory_ck_editor:
+#    input_sync: true
+#    jquery: true
+##    jquery_path: https://code.jquery.com/jquery-3.2.1.min.js
+##    inline: true
+#    autoload: true
+#    default_config: base_config
+#    filebrowsers:
+#        - VideoBrowse
+#        - VideoUpload
+#    configs:
+#        base_config:
+#            language: fr
+#            toolbar: full
+#            uiColor: "#BDBDBD"
+#    toolbars:
+#        items:
+#            full.colors: [ "TextColor", "BGColor" ]
+#            full.document: [ "Source", "-", "Preview", "Print" ]
+#        items:
+#            document: [ "Source", "-", "Save" ]
+#            link:     [ "Anchor" ]
+#            tool:     [ "Maximize" ]
+##                - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link'] }

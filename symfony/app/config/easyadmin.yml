@@ -1,0 +1,13 @@
+imports:
+    - { resource: easyadmin_entities/ }
+    - { resource: easyadmin_assets/ }
+# doc here: https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y'
+    edit:
+#        title: 'Èdition %%entity_label%%_edit'
+    new:
+#        title: 'Création %%entity_label%%'

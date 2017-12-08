@@ -1,0 +1,17 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: db
+    database_port: ~
+    database_name: novaway_test
+    database_user: novaway
+    database_password: novaway
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: admin@novaway.dev
+    mailer_password: ~
+
+    # With Great Power Comes Great Responsibility - A secret key that's used to generate certain security-related tokens
+    secret: The-Not-So-Secret-Token-Novaway-Test-Project

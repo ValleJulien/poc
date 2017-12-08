@@ -1,0 +1,48 @@
+version: '2'
+services:
+    db:
+        image: mysql
+        volumes:
+            - "./.data/db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    php:
+        mem_limit: 3000000000
+        memswap_limit: 2000000000
+        privileged: true
+        expose:
+            - "9000"
+        build:
+            context: container-stack/php7-fpm
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${SYMFONY_APP_PATH}:/var/www/symfony
+            - ./logs/symfony:/var/www/symfony/app/logs
+        links:
+            - db
+            - mailcatcher
+    nginx:
+        build: container-stack/nginx
+        ports:
+            - 81:80 # indeed I think the port 80:80 is already in use cuse you are using apache locally
+        volumes_from:
+            - php
+        links:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx
+    phpmyadmin:
+            image: phpmyadmin/phpmyadmin
+            ports:
+                - "8080:80"
+    mailcatcher:
+        image: hinshun/mailcatcher
+        build: container-stack/mailcatcher
+#          args:
+#            MAILCATCHER_VERSION: ${MAILCATCHER_VERSION}
+        ports:
+            - 1080:1080

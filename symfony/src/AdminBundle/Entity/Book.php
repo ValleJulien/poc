@@ -52,20 +52,6 @@ class Book
 
 
     /**
-     * @Assert\Type(
-     *     type="string",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )
-     * @Assert\Length(
-     *      min = 5,
-     *      minMessage = "Le sous-titre doit comprendre au moins {{ limit }} caractères minimum",
-     * )
-     * @ORM\Column(name="author", length=1500, nullable=true)
-     */
-    protected $author;
-
-
-    /**
      * @ORM\Column(name="publication_date", nullable=false)
      */
     protected $published_at;
@@ -125,6 +111,17 @@ class Book
 
 
     /**
+     * @var AuthorDirector
+     *
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\AuthorDirector", inversedBy="book", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="author_director_id", referencedColumnName="author_director_id", nullable=false)
+     * })
+     */
+    protected $authorDirector;
+
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -175,24 +172,6 @@ class Book
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-
-    /**
-     * @param mixed $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
     }
 
 
@@ -319,5 +298,41 @@ class Book
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+
+    /**
+     * @return AuthorDirector
+     */
+    public function getAuthorDirector()
+    {
+        return $this->authorDirector;
+    }
+
+
+    /**
+     * @param AuthorDirector $authorDirector
+     */
+    public function setAuthorDirector($authorDirector)
+    {
+        $this->authorDirector = $authorDirector;
+    }
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+
+    /**
+     * @param \DateTime $deletedAt
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
     }
 }

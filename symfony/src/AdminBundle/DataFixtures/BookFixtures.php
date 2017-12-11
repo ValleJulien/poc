@@ -19,14 +19,12 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
         $this->container = $container;
     }
 
+    /**
+     * @param ObjectManager $manager
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function load(ObjectManager $manager)
     {
-        $authors = [
-            "Jean Anouilh",
-            "Guillaume Musso",
-            "Franz-Olivier Giesbert"
-        ];
-
         $books = [
             "L'Insoutenable Légèreté de l'être",
             "J'irai cracher sur vos tombes",
@@ -37,12 +35,12 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
             "Le numéro 23",
         ];
 
+        $authors = $manager->getRepository("AdminBundle:AuthorDirector")->findAll();
+
         // create 10 books!
         for ($i = 0; $i < 10; $i++) {
             $book = new Book();
             $book->setId($i);
-            $randomAuthor = array_rand($authors);
-            $book->setAuthor($authors[$randomAuthor]);
             $randomTitle = array_rand($books);
             $book->setTitle($books[$randomTitle]);
             $timestamp = mt_rand(1, time());
@@ -55,6 +53,7 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
             $book->setSlug(strtolower($book->getTitle()."-".$book->getId()));
             $book->setCreatedAt(new \DateTime('now'));
             $book->setUpdatedAt(new \DateTime('now'));
+            $book->setAuthorDirector(array_rand($authors));
             $manager->persist($book);
         }
 
@@ -75,6 +74,7 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
             return $isbn->getErrors();
         }
     }
+
 
     /**
      * @return int

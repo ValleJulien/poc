@@ -8,11 +8,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
- * @ORM\Table(name="actor")
- * @ORM\Entity(repositoryClass="AdminBundle\Repository\DvdRepository")
+ * @ORM\Table(name="author_director")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\AuthorDirectorRepository")
  * @Gedmo\SoftDeleteable(fieldName="deleted_at", timeAware=false)
  */
-class Actor
+class AuthorDirector
 {
 
     /**
@@ -22,7 +22,7 @@ class Actor
 
 
     /**
-     * @ORM\Column(name="actor_id", type="integer")
+     * @ORM\Column(name="author_director_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -40,7 +40,7 @@ class Actor
      * )
      * @ORM\Column(name="fisrt_name", length=255, nullable=false)
      */
-    protected $fisrtName;
+    protected $firstName;
 
     /**
      * @Assert\Type(
@@ -81,6 +81,14 @@ class Actor
 
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\Book", mappedBy="authorDirector", cascade={"persist"})
+     */
+    protected $book;
+
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -97,22 +105,20 @@ class Actor
         $this->id = $id;
     }
 
-
     /**
      * @return mixed
      */
-    public function getFisrtName()
+    public function getFirstName()
     {
-        return $this->fisrtName;
+        return $this->firstName;
     }
 
-
     /**
-     * @param mixed $fisrtName
+     * @param mixed $firstName
      */
-    public function setFisrtName($fisrtName)
+    public function setFirstName($firstName)
     {
-        $this->fisrtName = $fisrtName;
+        $this->firstName = $firstName;
     }
 
 
@@ -203,5 +209,21 @@ class Actor
     public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $book
+     */
+    public function setBook($book)
+    {
+        $this->book = $book;
     }
 }

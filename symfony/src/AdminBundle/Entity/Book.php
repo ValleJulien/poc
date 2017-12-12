@@ -6,10 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="book")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\BookRepository")
+ * @UniqueEntity("isbn")
  * @Gedmo\SoftDeleteable(fieldName="deleted_at", timeAware=false)
  */
 class Book
@@ -32,7 +34,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(name="isbn", type="string", nullable=false)
+     * @ORM\Column(name="isbn", type="string", nullable=false, unique=true)
      */
     protected $isbn;
 
@@ -334,5 +336,10 @@ class Book
     public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

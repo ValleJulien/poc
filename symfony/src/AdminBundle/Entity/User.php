@@ -77,4 +77,9 @@ class User extends BaseUser
         parent::setEmail($email);
         parent::setUsername($email);
     }
+
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
 }

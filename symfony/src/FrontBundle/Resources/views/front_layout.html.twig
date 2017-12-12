@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>
+            {% block title %} {% endblock title %}
+        </title>
+
+        {% stylesheets
+            '@FrontBundle/Resources/public/css/*'
+            filter='cssrewrite' output='css/compiled/app.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    </head>
+
+    <body>
+
+        {% block nav %}
+            {% include ':common:navbar.html.twig' %}
+        {% endblock nav %}
+
+        <div class="container">
+            {% block content %}
+                {# put main content here #}
+            {% endblock content %}
+
+            {% block listCardBook %}
+                {# put list card here if needed #}
+            {% endblock listCardBook %}
+        </div>
+
+        {% block footer %}
+            {% include ':common:footer.html.twig' %}
+        {% endblock footer %}
+
+
+        {% block javascripts %}
+            {% javascripts '@FrontBundle/Resources/public/js/*' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

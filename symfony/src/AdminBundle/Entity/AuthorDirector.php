@@ -226,4 +226,9 @@ class AuthorDirector
     {
         $this->book = $book;
     }
+
+    public function __toString()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
 }

@@ -8,10 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class FrontController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="front_homepage")
      */
     public function indexAction()
     {
-        return $this->render('FrontBundle:Default:index.html.twig');
+        return $this->render('FrontBundle:Pages:index.html.twig', array(
+            'title'         => "Novaway"
+        ));
     }
 }

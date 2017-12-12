@@ -21,7 +21,6 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
 
     /**
      * @param ObjectManager $manager
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function load(ObjectManager $manager)
     {
@@ -30,9 +29,15 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
             "J'irai cracher sur vos tombes",
             "Voyage au bout de la nuit",
             "L'Écume des jours",
-            "Les Misérables",
-            "Le livre Test",
             "Le numéro 23",
+            "L'ordre du jour",
+            "La disparition de josef mengele",
+            "On la trouvait plutot jolie",
+            "La reine du bal",
+            "Congo Requiem",
+            "Poupée volée",
+            "Dieu n'habite pas la Havane",
+            "Une bouche sans personne"
         ];
 
         $authors = $manager->getRepository("AdminBundle:AuthorDirector")->findAll();
@@ -43,27 +48,30 @@ class BookFixtures extends Fixture implements ContainerAwareInterface, OrderedFi
             $book->setId($i);
             $randomTitle = array_rand($books);
             $book->setTitle($books[$randomTitle]);
-            $timestamp = mt_rand(1, time());
-            $book->setPublishedAt(date("Y-m-d", $timestamp));
-            $book->setPageNumber(mt_rand(10, 100));
+            $book->setPublishedAt(date("Y-m-d", mt_rand(1, time()) ));
+            $book->setPageNumber(mt_rand(100, 300));
             $book->setSummary("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
             $book->setPrice(mt_rand(10, 100));
             $book->setIsbn($this->generateRandIsbn());
-            $book->setSlug(strtolower($book->getTitle()."-".$book->getId()));
+            $book->setSlug(preg_replace('/\s+/', '-', strtolower($book->getTitle()."-".$book->getId())));
             $book->setCreatedAt(new \DateTime('now'));
             $book->setUpdatedAt(new \DateTime('now'));
-            $book->setAuthorDirector(array_rand($authors));
+            $book->setAuthorDirector($authors[rand(0, count($authors) -1)]);
             $manager->persist($book);
+            echo 'INFO-LOG: book with title  '.$book->getTitle().' write by '.$book->getAuthorDirector().' is persisted !'."\r\n";
         }
 
         $manager->flush();
     }
 
+
+    /**
+     * @return string
+     */
     public function generateRandIsbn()
     {
-        $numbers = "0123456789";
-        $result = str_pad($numbers, 13, "9876543210");
+        $result = str_pad(mt_rand(0, mt_getrandmax()), 13, mt_rand(0, mt_getrandmax()), STR_PAD_BOTH);
         $isbn = new Isbn($result);
 
         if ($isbn->isValid()) {

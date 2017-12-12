@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 
 class AuthorDirectorRepository extends EntityRepository
 {
+
     /**
      * @param $firstName
      * @param $lastName
@@ -29,6 +30,7 @@ class AuthorDirectorRepository extends EntityRepository
                             ->getResult();
     }
 
+
     /**
      * @return mixed
      * @throws \Doctrine\ORM\NoResultException
@@ -38,7 +40,7 @@ class AuthorDirectorRepository extends EntityRepository
     {
         $queryBuilder = $this->_em->createQueryBuilder();
         $queryBuilder
-            ->select('partial ad.{id}')
+            ->select('ad')
             ->addSelect('RAND() as HIDDEN rand')
             ->from('AdminBundle:AuthorDirector', 'ad')
             ->orderBy('rand');

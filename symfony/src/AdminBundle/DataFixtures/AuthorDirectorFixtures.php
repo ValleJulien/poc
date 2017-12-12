@@ -46,14 +46,14 @@ class AuthorDirectorFixtures extends Fixture implements ContainerAwareInterface,
 
         foreach ($data as $author ) {
             if (!$manager->getRepository("AdminBundle:AuthorDirector")->findOneByFullName($author->getFirstName(), $author->getLastName() )) {
-                $author->setSlug($author->getFirstName().'-'.$author->getLastName());
+                $author->setSlug(preg_replace('/\s+/', '-', strtolower($author->getFirstName()."-".$author->getLastName())));
                 $author->setCreatedAt(new \DateTime('now'));
                 $author->setUpdatedAt(new \DateTime('now'));
                 $manager->persist($author);
                 $manager->flush();
-                echo 'INFO-LOG: user for  '.$author->getSlug().' is persisted !'."\r\n";
+                echo 'INFO-LOG: author for  '.$author->getSlug().' is persisted !'."\r\n";
             } else {
-                echo 'INFO-LOG: user already EXIST for '.$author->getSlug()."\r\n";
+                echo 'INFO-LOG: author already EXIST for '.$author->getSlug()."\r\n";
             }
         }
     }

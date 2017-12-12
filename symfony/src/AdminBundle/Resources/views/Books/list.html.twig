@@ -1,0 +1,18 @@
+<!-- Content Row -->
+<div class="row">
+    {% for book in books %}
+        <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">{{ book.title }}</h2>
+                <p class="card-text"> {{ book.summary }}</p>
+                <p class="card-text"> <b>Publié le: </b>{{ book.publishedAt|date("m/d/Y") }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('single_book_info', { 'slug': book.slug } ) }}" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- /.row -->

@@ -5,6 +5,7 @@ imports:
     - { resource: easyadmin.yml }
     - { resource: ivory_ck_editor.yml }
     - { resource: doctrine.yml }
+    - { resource: assetic.yml }
     - { resource: fos_user.yml }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@FrontBundle/Resources/config/services.yml" }

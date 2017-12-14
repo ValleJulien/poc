@@ -1,5 +1,5 @@
 imports:
-    - { resource: easyadmin_entities/ }
+#    - { resource: easyadmin_entities/ }
     - { resource: easyadmin_assets/ }
 # doc here: https://github.com/javiereguiluz/EasyAdminBundle
 easy_admin:

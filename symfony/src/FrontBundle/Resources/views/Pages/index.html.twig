@@ -14,7 +14,7 @@
             <div class="col-lg-4">
                 <h1>Manage your library online !</h1>
                 <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
-                <a class="btn btn-primary btn-lg" href="#">See all books and authors</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('book_list') }}">See all books and authors</a>
             </div>
             <!-- /.col-md-4 -->
         </div>
@@ -28,5 +28,5 @@
     {% endblock content %}
 
     {% block listCardBook %}
-        {{ render(controller('AdminBundle:Book:carListLastRegisteredBook')) }}
+        {{ render(controller('AdminBundle:Book:carListLastRegisteredBook', {'counter': counter })) }}
     {% endblock listCardBook %}

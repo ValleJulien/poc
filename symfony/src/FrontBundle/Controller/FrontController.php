@@ -13,7 +13,18 @@ class FrontController extends Controller
     public function indexAction()
     {
         return $this->render('FrontBundle:Pages:index.html.twig', array(
-            'title'         => "Novaway"
+            'title'    => "Novaway",
+            'counter'  => 3
+        ));
+    }
+
+    /**
+     * @Route("/book-list", name="book_list")
+     */
+    public function bookListAction()
+    {
+        return $this->render('FrontBundle:Pages:book_list.html.twig', array(
+            'title'         => "Book List"
         ));
     }
 }

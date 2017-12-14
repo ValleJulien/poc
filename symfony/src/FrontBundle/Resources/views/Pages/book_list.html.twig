@@ -1,0 +1,17 @@
+{% extends 'FrontBundle::front_layout.html.twig' %}
+
+    {% block title %}
+        {{ title }}
+    {% endblock title %}
+
+    {% block content %}
+        <div class="card text-white bg-secondary my-4 text-center">
+            <div class="card-body">
+                <p class="text-white m-0">Here is the list of all books availabled on the website!</p>
+            </div>
+        </div>
+    {% endblock content %}
+
+    {% block listCardBook %}
+        {{ render(controller('AdminBundle:Book:carListLastRegisteredBook')) }}
+    {% endblock listCardBook %}

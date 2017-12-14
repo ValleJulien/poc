@@ -12,12 +12,13 @@ class BookController extends Controller
 {
 
     /**
+     * @param int $counter
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function carListLastRegisteredBookAction()
+    public function carListLastRegisteredBookAction(int $counter = null)
     {
         $em = $this->getDoctrine()->getManager();
-        $books = $em->getRepository('AdminBundle:Book')->getLastRegisteredBook(3);
+        $books = $em->getRepository('AdminBundle:Book')->getLastRegisteredBook($counter);
 
         return $this->render('AdminBundle:Books:list.html.twig', array(
             'books' => $books

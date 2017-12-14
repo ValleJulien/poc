@@ -8,10 +8,10 @@ use Doctrine\ORM\EntityRepository;
 class BookRepository extends EntityRepository
 {
     /**
-     * @param int $count
+     * @param int $counter
      * @return array
      */
-    public function getLastRegisteredBook(int $count)
+    public function getLastRegisteredBook(int $counter = null)
     {
         $queryBuilder = $this->_em->createQueryBuilder();
         return $queryBuilder
@@ -19,7 +19,7 @@ class BookRepository extends EntityRepository
             ->from('AdminBundle:Book', 'b')
             ->orderBy('b.createdAt', 'DESC')
             ->getQuery()
-            ->setMaxResults($count)
+            ->setMaxResults($counter)
             ->getResult();
     }
 }

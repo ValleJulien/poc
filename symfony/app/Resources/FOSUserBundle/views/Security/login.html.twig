@@ -1,0 +1,49 @@
+{% extends "FOSUserBundle::fos_layout.html.twig" %}
+
+
+{% block title %}
+    Sign In
+{% endblock title %}
+
+    {% block fos_user_content %}
+
+        {% if error %}
+            <div class="alert bg-error">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {# hidden token, don't erase ! #}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+            {# hidden referer to manage redirection #}
+            <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}"/>
+            {# username input #}
+            {# <label class="" for="username">{{ 'security.login.username'|trans }}</label> #}
+            {# <input class="" type="text" id="username" name="_username" value="{{ last_username }}" required="required"> #}
+            <div class="form-group">
+                <label for="username">Email*</label>
+                <input type="email" class="form-control" id="username" name="_username" required="required"/>
+            </div>
+
+            {# password input #}
+            <div class="form-group">
+                <label for="password">{{ 'security.login.password'|trans }}*</label>
+                <input class="form-control" type="password" id="password" name="_password" required="required"/>
+            </div>
+            {# remember me token #}
+            <label class="form-group" for="remember_me">
+                <input type="checkbox" id="remember_me" name="_remember_me">
+                <span class="">{{ 'security.login.remember_me'|trans }}</span>
+            </label>
+            {# submit form #}
+            <div class="form-group-lg">
+                <button class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}">
+                    Sign In
+                </button>
+            </div>
+        </form>
+        <p class="text-center">*forget Your password ? <a href="{{ path('fos_user_resetting_request') }}">click here !</a></p>
+        <p class="text-center">*don't have ann account yet ? <a href="{{ path('fos_user_register') }}">click here !</a></p>
+
+    {% endblock fos_user_content %}

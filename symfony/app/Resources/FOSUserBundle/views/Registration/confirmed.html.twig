@@ -1,0 +1,18 @@
+{% extends "FOSUserBundle::fos_layout.html.twig" %}
+
+{% block title %}
+    Registration Confirmed
+{% endblock title %}
+
+
+{% block fos_user_content %}
+    <div>
+        <p>
+            Your account has been created !
+        </p>
+
+        <p>
+            <a href="{{ path('front_homepage') }}">Return to homepage !</a>
+        </p>
+    </div>
+{% endblock fos_user_content %}

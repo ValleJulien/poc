@@ -4,8 +4,6 @@ cp utils/.env.dist .env
 
 cp utils/parameters.yml.dist symfony/app/config/parameters.yml.dist
 
-cp utils/adminer.php symfony/web/adminer.php
-
 read -r -p "It is the first time you init the project (e-g no docker container was build yet)  ???  [Y/n]" response
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]

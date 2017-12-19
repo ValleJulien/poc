@@ -28,13 +28,13 @@
 
             {# password input #}
             <div class="form-group">
-                <label for="password">{{ 'security.login.password'|trans }}*</label>
+                <label for="password">Password *</label>
                 <input class="form-control" type="password" id="password" name="_password" required="required"/>
             </div>
             {# remember me token #}
             <label class="form-group" for="remember_me">
                 <input type="checkbox" id="remember_me" name="_remember_me">
-                <span class="">{{ 'security.login.remember_me'|trans }}</span>
+                <span class="">Remember me ?</span>
             </label>
             {# submit form #}
             <div class="form-group-lg">
@@ -43,7 +43,7 @@
                 </button>
             </div>
         </form>
-        <p class="text-center">*forget Your password ? <a href="{{ path('fos_user_resetting_request') }}">click here !</a></p>
+        {#<p class="text-center">*forget Your password ? <a href="{{ path('fos_user_resetting_request') }}">click here !</a></p>#}
         <p class="text-center">*don't have ann account yet ? <a href="{{ path('fos_user_registration_register') }}">click here !</a></p>
 
     {% endblock fos_user_content %}

@@ -5,10 +5,10 @@ namespace AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class AdminController extends Controller
+class AuthorsDirectorsController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/authors-directors/all")
      */
     public function indexAction()
     {

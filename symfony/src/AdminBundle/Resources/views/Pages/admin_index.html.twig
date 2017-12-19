@@ -1,0 +1,32 @@
+{% extends '::layout.html.twig' %}
+
+    {% block title %}
+        {{ title }}
+    {% endblock title %}
+
+    {% block content %}
+        <div class="row my-4">
+            <div class="card text-center col-lg-12">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Welcome</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Authors/Directors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Users</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">Welcome To Your Back Office</h4>
+                    <p class="card-text">Choose a section to manage, updates and creates new books, authors or users. Enjoy !</p>
+                </div>
+            </div>
+        </div>
+    {% endblock content %}

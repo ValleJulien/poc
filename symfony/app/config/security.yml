@@ -40,3 +40,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/logout, role: [ROLE_EDITOR, ROLE_ADMIN] }
         - { path: ^/easy-admin, role: [ROLE_EDITOR, ROLE_ADMIN] }
+        - { path: ^/admin, role: [ROLE_EDITOR, ROLE_ADMIN] }

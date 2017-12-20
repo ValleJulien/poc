@@ -10,10 +10,10 @@
                 <a class="nav-link" href="{{ path('admin_index') }}">Welcome</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
+                <a class="nav-link active" href="#">Books</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#">Authors/Directors</a>
+                <a class="nav-link" href="#">Authors/Directors</a>
             </li>
         </ul>
     {% endblock adminPanel %}
@@ -24,7 +24,7 @@
                 <h4>{{ title }}</h4>
             </div>
             <div class="col-sm-3 d-flex p-2">
-                <a href="{{ path('admin_authordirector_new') }}" class="btn btn-primary">Create a new authorDirector</a>
+                <a href="{{ path('admin_book_new') }}" class="btn btn-primary">Create a new book</a>
             </div>
             <p class="d-flex p-2"> This the list of all your data :</p>
         </div>
@@ -43,17 +43,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for authorDirector in authorDirectors %}
+                {% for book in books %}
                     <tr>
-                        <td><a href="{{ path('admin_authordirector_show', { 'id': authorDirector.id }) }}">{{ authorDirector.id }}</a></td>
-                        <td>{{ authorDirector.firstName|capitalize }} {{ authorDirector.lastName|capitalize }}</td>
-                        <td>{{ authorDirector.slug }}</td>
-                        <td>{% if authorDirector.createdAt %}{{ authorDirector.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if authorDirector.updatedAt %}{{ authorDirector.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if authorDirector.deletedAt %}{{ authorDirector.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td><a href="{{ path('admin_book_show', { 'id': book.id }) }}">{{ book.id }}</a></td>
+                        <td>{{ book.title|capitalize }}</td>
+                        <td>{{ book.slug }}</td>
+                        <td>{% if book.createdAt %}{{ book.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if book.updatedAt %}{{ book.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if book.deletedAt %}{{ book.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
-                            <a href="{{ path('admin_authordirector_show', { 'id': authorDirector.id }) }}" class="btn btn-info btn-sm">show</a>
-                            <a href="{{ path('admin_authordirector_edit', { 'id': authorDirector.id }) }}" class="btn btn-warning btn-sm">edit</a>
+                            <a href="{{ path('admin_book_show', { 'id': book.id }) }}" class="btn btn-info btn-sm">show</a>
+                            <a href="{{ path('admin_book_edit', { 'id': book.id }) }}" class="btn btn-warning btn-sm">edit</a>
                         </td>
                     </tr>
                 {% endfor %}

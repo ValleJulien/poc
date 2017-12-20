@@ -1,4 +1,4 @@
-{% extends 'AdminBundle:AuthorDirector:list.html.twig' %}
+{% extends 'AdminBundle:Book:list.html.twig' %}
 
 {% block title %}
     {{ title }}
@@ -6,7 +6,7 @@
 
 {% block adminAction %}
     <div class="row d-flex p-2">
-        <h4>Authordirector</h4>
+        <h4>Book</h4>
     </div>
 
     <div class="row d-flex p-2">
@@ -14,31 +14,31 @@
             <tbody>
                 <tr>
                     <th>Id</th>
-                    <td>{{ authorDirector.id }}</td>
+                    <td>{{ book.id }}</td>
                 </tr>
                 <tr>
                     <th>Firstname</th>
-                    <td>{{ authorDirector.firstName }}</td>
+                    <td>{{ book.firstName }}</td>
                 </tr>
                 <tr>
                     <th>Lastname</th>
-                    <td>{{ authorDirector.lastName }}</td>
+                    <td>{{ book.lastName }}</td>
                 </tr>
                 <tr>
                     <th>Slug</th>
-                    <td>{{ authorDirector.slug }}</td>
+                    <td>{{ book.slug }}</td>
                 </tr>
                 <tr>
                     <th>Createdat</th>
-                    <td>{% if authorDirector.createdAt %}{{ authorDirector.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if book.createdAt %}{{ book.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Updatedat</th>
-                    <td>{% if authorDirector.updatedAt %}{{ authorDirector.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if book.updatedAt %}{{ book.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Deletedat</th>
-                    <td>{% if authorDirector.deletedAt %}{{ authorDirector.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if book.deletedAt %}{{ book.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 </tr>
             </tbody>
         </table>
@@ -46,11 +46,11 @@
 
     <div class="row d-flex p-2">
         <div class="col-sm-1">
-            <a href="{{ path('admin_authordirector_index') }}" class="btn btn-primary">Back to the list</a>
+            <a href="{{ path('admin_book_index') }}" class="btn btn-primary">Back to the list</a>
         </div>
 
         <div class="col-sm-2">
-            <a href="{{ path('admin_authordirector_edit', { 'id': authorDirector.id }) }}" class="btn btn-warning">Edit</a>
+            <a href="{{ path('admin_book_edit', { 'id': book.id }) }}" class="btn btn-warning">Edit</a>
         </div>
 
         <div class="col-sm-1">

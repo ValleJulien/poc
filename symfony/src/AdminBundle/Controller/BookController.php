@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 /**
- * Authordirector controller.
+ * Book controller.
  *
  * @Route("book")
  */
@@ -30,8 +30,8 @@ class BookController extends Controller
         $books = $em->getRepository('AdminBundle:Book')->findAll();
 
         return $this->render('AdminBundle:Book:list.html.twig', array(
-            'title'           => "Books List",
-            'authorDirectors' => $books,
+            'title' => "Books List",
+            'books' => $books,
         ));
     }
 
@@ -59,9 +59,9 @@ class BookController extends Controller
         }
 
         return $this->render('AdminBundle:Book:new.html.twig', array(
-            'title'          => "Create book",
-            'authorDirector' => $book,
-            'form'           => $form->createView(),
+            'title' => "Create book",
+            'book'  => $book,
+            'form'  => $form->createView(),
         ));
     }
 
@@ -79,9 +79,9 @@ class BookController extends Controller
         $deleteForm = $this->createDeleteForm($book);
 
         return $this->render('AdminBundle:Book:show.html.twig', array(
-            'title'          => "Infos about ".$book->getTitle(),
-            'authorDirector' => $book,
-            'delete_form'    => $deleteForm->createView(),
+            'title'       => "Infos about ".$book->getTitle(),
+            'book'        => $book,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -97,7 +97,7 @@ class BookController extends Controller
     public function editAction(Request $request, Book $book)
     {
         $deleteForm = $this->createDeleteForm($book);
-        $editForm = $this->createForm('AdminBundle\Form\AuthorDirectorType', $book);
+        $editForm = $this->createForm('AdminBundle\Form\BookType', $book);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -106,11 +106,11 @@ class BookController extends Controller
             return $this->redirectToRoute('admin_book_edit', array('id' => $book->getId()));
         }
 
-        return $this->render('AdminBundle:AuthorDirector:edit.html.twig', array(
-            'title'          => "Infos Book",
-            'authorDirector' => $book,
-            'edit_form'      => $editForm->createView(),
-            'delete_form'    => $deleteForm->createView(),
+        return $this->render('AdminBundle:Book:edit.html.twig', array(
+            'title'       => "Infos Book",
+            'book'        => $book,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -148,7 +148,7 @@ class BookController extends Controller
     private function createDeleteForm(Book $book)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_authordirector_delete', array('id' => $book->getId())))
+            ->setAction($this->generateUrl('admin_book_delete', array('id' => $book->getId())))
             ->setMethod('DELETE')
             ->getForm()
             ;

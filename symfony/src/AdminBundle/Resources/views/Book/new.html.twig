@@ -1,0 +1,26 @@
+{% extends 'AdminBundle:AuthorDirector:list.html.twig' %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block adminAction %}
+    <div class="row d-flex p-2">
+        <h4>Authordirector creation</h4>
+    </div>
+
+        <div class="row d-flex p-2">
+            <div class="col-sm-4">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                    <input class="btn btn-success" type="submit" value="Create" />
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <div class="row d-flex p-2">
+            <div class="col-sm-1">
+                <a href="{{ path('admin_authordirector_index') }}" class="btn btn-primary">Back to the list</a>
+            </div>
+        </div>
+{% endblock adminAction %}

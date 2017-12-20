@@ -1,0 +1,62 @@
+{% extends 'AdminBundle:AuthorDirector:list.html.twig' %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block adminAction %}
+    <div class="row d-flex p-2">
+        <h4>Authordirector</h4>
+    </div>
+
+    <div class="row d-flex p-2">
+        <table class="table table-inverse table-hover table-responsive">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ authorDirector.id }}</td>
+                </tr>
+                <tr>
+                    <th>Firstname</th>
+                    <td>{{ authorDirector.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Lastname</th>
+                    <td>{{ authorDirector.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Slug</th>
+                    <td>{{ authorDirector.slug }}</td>
+                </tr>
+                <tr>
+                    <th>Createdat</th>
+                    <td>{% if authorDirector.createdAt %}{{ authorDirector.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Updatedat</th>
+                    <td>{% if authorDirector.updatedAt %}{{ authorDirector.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Deletedat</th>
+                    <td>{% if authorDirector.deletedAt %}{{ authorDirector.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row d-flex p-2">
+        <div class="col-sm-1">
+            <a href="{{ path('admin_authordirector_index') }}" class="btn btn-primary">Back to the list</a>
+        </div>
+
+        <div class="col-sm-2">
+            <a href="{{ path('admin_authordirector_edit', { 'id': authorDirector.id }) }}" class="btn btn-warning">Edit</a>
+        </div>
+
+        <div class="col-sm-1">
+            {{ form_start(delete_form) }}
+            <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock adminAction %}

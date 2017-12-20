@@ -8,7 +8,8 @@
         <div class="row my-4">
             <div class="card text-center col-lg-12">
                 <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
+                    {% block adminPanel %}
+                        <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Welcome</a>
                         </li>
@@ -18,10 +19,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_authordirector_index') }}">Authors/Directors</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Users</a>
-                        </li>
                     </ul>
+                    {% endblock adminPanel %}
                 </div>
                 <div class="card-block">
                     {% block adminAction %}

@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AdminController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="admin_index")
      */
     public function indexAction()
     {

@@ -20,7 +20,7 @@ class AuthorDirectorController extends Controller
     /**
      * Lists all authorDirector entities.
      *
-     * @Route("/", name="admin_authordirector_index")
+     * @Route("/list", name="admin_authordirector_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -29,7 +29,7 @@ class AuthorDirectorController extends Controller
 
         $authorDirectors = $em->getRepository('AdminBundle:AuthorDirector')->findAll();
 
-        return $this->render('AdminBundle:AuthorDirector:index.html.twig', array(
+        return $this->render('AdminBundle:AuthorDirector:list.html.twig', array(
             'title'           => "Authors Directors List",
             'authorDirectors' => $authorDirectors,
         ));
@@ -67,16 +67,19 @@ class AuthorDirectorController extends Controller
     /**
      * Finds and displays a authorDirector entity.
      *
-     * @Route("/{id}", name="admin_authordirector_show")
+     * @Route("/show/{id}", name="admin_authordirector_show")
      * @Method("GET")
+     * @param AuthorDirector $authorDirector
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(AuthorDirector $authorDirector)
     {
         $deleteForm = $this->createDeleteForm($authorDirector);
 
         return $this->render('AdminBundle:AuthorDirector:show.html.twig', array(
+            'title'          => "Infos about ".$authorDirector->getFirstName()." ".$authorDirector->getLastName(),
             'authorDirector' => $authorDirector,
-            'delete_form' => $deleteForm->createView(),
+            'delete_form'    => $deleteForm->createView(),
         ));
     }
 
@@ -113,8 +116,11 @@ class AuthorDirectorController extends Controller
     /**
      * Deletes a authorDirector entity.
      *
-     * @Route("/{id}", name="admin_authordirector_delete")
+     * @Route("/{id}/delete", name="admin_authordirector_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param AuthorDirector $authorDirector
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, AuthorDirector $authorDirector)
     {

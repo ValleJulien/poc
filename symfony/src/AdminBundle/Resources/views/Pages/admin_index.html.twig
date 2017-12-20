@@ -16,7 +16,7 @@
                             <a class="nav-link" href="#">Books</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Authors/Directors</a>
+                            <a class="nav-link" href="{{ path('admin_authordirector_index') }}">Authors/Directors</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Users</a>
@@ -24,8 +24,10 @@
                     </ul>
                 </div>
                 <div class="card-block">
-                    <h4 class="card-title">Welcome To Your Back Office</h4>
-                    <p class="card-text">Choose a section to manage, updates and creates new books, authors or users. Enjoy !</p>
+                    {% block adminAction %}
+                        <h4 class="card-title">Welcome To Your Back Office</h4>
+                        <p class="card-text">Choose a section to manage, updates and creates new books, authors or users. Enjoy !</p>
+                    {% endblock adminAction %}
                 </div>
             </div>
         </div>

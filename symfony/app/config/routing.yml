@@ -1,3 +1,11 @@
+#admin_author_director:
+#    resource: "@AdminBundle/Controller/AuthorDirectorController.php"
+#    type:     annotation
+
+#admin_user:
+#    resource: "@AdminBundle/Controller/UserController.php"
+#    type:     annotation
+
 front:
     resource: "@FrontBundle/Controller/"
     type:     annotation

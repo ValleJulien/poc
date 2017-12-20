@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Authordirector</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ authorDirector.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ authorDirector.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ authorDirector.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ authorDirector.slug }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if authorDirector.createdAt %}{{ authorDirector.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if authorDirector.updatedAt %}{{ authorDirector.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Deletedat</th>
+                <td>{% if authorDirector.deletedAt %}{{ authorDirector.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_authordirector_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_authordirector_edit', { 'id': authorDirector.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
